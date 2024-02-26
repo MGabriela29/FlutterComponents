@@ -4,17 +4,41 @@ import 'package:google_fonts/google_fonts.dart';
 
 class AppTheme{
 //constante de color primario
-static const primaryColor = Color.fromARGB(223, 101, 102, 189);
+static const primaryColor = Color.fromARGB(255, 132, 220, 255);
 //constante de color de fondo
 static const backColor = Color.fromARGB(218, 253, 242, 193);
 // color de texto
 static const secondaryColor = Color.fromARGB(255, 0, 0, 0);
-static const botncolor = Color.fromARGB(255, 255, 251, 0);
+static const botncolor = Color.fromARGB(255, 0, 0, 0);
 //constante de tema
 static final ThemeData lightTheme = ThemeData.light().copyWith(
    scaffoldBackgroundColor: const Color.fromARGB(78, 44, 172, 204),
         primaryColor: const  Color.fromARGB(255, 158, 3, 247),
-        appBarTheme: const AppBarTheme(color: primaryColor,),
+        appBarTheme:  AppBarTheme(
+        color: primaryColor,
+        titleTextStyle: GoogleFonts.laila(
+          color: backColor,
+          fontSize: 28.5,
+          fontWeight: FontWeight.bold,
+        ),
+        ),
+        iconTheme: const IconThemeData(
+          color: Color.fromARGB(255, 7, 255, 214),
+          size: 35.0,
+
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(backgroundColor: MaterialStateProperty.all(
+            Colors.blueGrey,
+          ),
+          foregroundColor: MaterialStateProperty.all(
+            Colors.deepPurpleAccent,
+          ),
+          textStyle: MaterialStateProperty.all(
+            GoogleFonts.pacifico(fontSize: 25.0,)
+          )
+           )
+        ),
         textTheme: TextTheme(
           //titulos muy grandres 
           headlineLarge: GoogleFonts.gabriela(
