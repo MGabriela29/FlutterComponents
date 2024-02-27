@@ -5,10 +5,11 @@ import 'package:google_fonts/google_fonts.dart';
 class AppTheme{
 //constante de color primario
 static const primaryColor = Color.fromARGB(255, 132, 220, 255);
+static const colorTitle=Color.fromARGB(255, 0, 0, 0);
 //constante de color de fondo
 static const backColor = Color.fromARGB(218, 253, 242, 193);
 // color de texto
-static const secondaryColor = Color.fromARGB(255, 0, 0, 0);
+static const secondaryColor = Color.fromARGB(255, 255, 255, 255);
 static const botncolor = Color.fromARGB(255, 0, 0, 0);
 //constante de tema
 static final ThemeData lightTheme = ThemeData.light().copyWith(
@@ -17,7 +18,7 @@ static final ThemeData lightTheme = ThemeData.light().copyWith(
         appBarTheme:  AppBarTheme(
         color: primaryColor,
         titleTextStyle: GoogleFonts.laila(
-          color: backColor,
+          color: colorTitle,
           fontSize: 28.5,
           fontWeight: FontWeight.bold,
         ),
@@ -32,7 +33,7 @@ static final ThemeData lightTheme = ThemeData.light().copyWith(
             Colors.blueGrey,
           ),
           foregroundColor: MaterialStateProperty.all(
-            Colors.deepPurpleAccent,
+            const Color.fromARGB(255, 77, 199, 255),
           ),
           textStyle: MaterialStateProperty.all(
             GoogleFonts.pacifico(fontSize: 25.0,)
@@ -51,6 +52,13 @@ static final ThemeData lightTheme = ThemeData.light().copyWith(
             decorationStyle: TextDecorationStyle.dotted,
             decorationThickness: 2.0,
             //decoration: TextDecoration.lineThrough/tacha el texto 
+          ),
+          headlineMedium: GoogleFonts.gabriela(
+            color: secondaryColor,
+            fontSize: 21,
+            fontWeight: FontWeight.bold,
+            
+
           ),
           bodySmall: GoogleFonts.averiaSerifLibre(
             color: secondaryColor,
