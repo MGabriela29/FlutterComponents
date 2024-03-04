@@ -17,34 +17,37 @@ class _InputsScreenState extends State<InputsScreen> {
       appBar: AppBar(
         title: const Text('Entradas'),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Text('Entradas',
-          style: AppTheme.lightTheme.textTheme.headlineLarge,
-          ),
-          entradaNombre(),
-          entradaSwicht(),
-          entradasSlider(),
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              ElevatedButton(
-              onPressed: null, 
-              child: Text('Regresar',
-              //style: AppTheme.lightTheme.textTheme.bodyMedium,
-              )
-              ),
-              ElevatedButton(
-              onPressed: null, 
-              child: Text('Ventana de Datos',
-              //style: AppTheme.lightTheme.textTheme.bodyMedium,
-              )
-              ),
-            ],
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(50.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text('Entradas',
+            style: AppTheme.lightTheme.textTheme.headlineLarge,
+            ),
+            entradaNombre(),
+            entradaSwicht(),
+            entradasSlider(),
+               const ElevatedButton(
+                onPressed: null, 
+                child: Text('Guardar',
+                //style: AppTheme.lightTheme.textTheme.bodyMedium,
+                )),
+          ],
+        ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: AppTheme.primaryColor,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Inicio', ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.add_comment),
+              label: 'Comentarios')
+        ]
+         ),
     );
   }
 
