@@ -11,6 +11,8 @@ class InputsScreen extends StatefulWidget {
 class _InputsScreenState extends State<InputsScreen> {
   bool switchValue = false; //controla el widget swicht //variable de clase
   double sliderValue = 0.0;
+  int radioSelected=0;
+
   @override
   Widget build(BuildContext context) {
     return   Scaffold(
@@ -28,6 +30,7 @@ class _InputsScreenState extends State<InputsScreen> {
             entradaNombre(),
             entradaSwicht(),
             entradasSlider(),
+            entradaRadio(),
                const ElevatedButton(
                 onPressed: null, 
                 child: Text('Guardar',
@@ -103,6 +106,49 @@ Column entradasSlider(){
           });
         }),
     ],
+  );
+}
+
+Column entradaRadio(){
+  return Column(
+    children:[
+      Text('Escoge una opción',
+      style: AppTheme.lightTheme.textTheme.headlineLarge,),
+      ListTile(
+        title: Text('Kotlin',
+        style: AppTheme.lightTheme.textTheme.headlineMedium,),
+        leading: Transform.scale(
+          scale: 1.5,
+          child: Radio(
+            value: 1,//id de la opcion seleccionada 
+            groupValue: radioSelected,
+            onChanged: (value){
+              setState(() {
+                radioSelected= value!;
+                print('Seleccion del botón radio: $radioSelected');
+              });
+            },
+          ),
+        ),
+      ),
+      ListTile(
+        title: Text('Java',
+        style: AppTheme.lightTheme.textTheme.headlineMedium,),
+        leading: Transform.scale(
+          scale: 1.5,
+          child: Radio(
+            value: 2,//id de la opcion seleccionada 
+            groupValue: radioSelected,
+            onChanged: (value){
+              setState(() {
+                radioSelected= value!;
+                print('Seleccion del botón radio: $radioSelected');
+              });
+            },
+          ),
+        ),
+      ),
+    ]
   );
 }
 
