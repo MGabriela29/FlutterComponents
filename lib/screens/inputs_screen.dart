@@ -12,6 +12,9 @@ class _InputsScreenState extends State<InputsScreen> {
   bool switchValue = false; //controla el widget swicht //variable de clase
   double sliderValue = 0.0;
   int radioSelected=0;
+  bool checkboxValue1 = false;
+  bool checkboxValue2 = false;
+  bool checkboxValue3 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +34,11 @@ class _InputsScreenState extends State<InputsScreen> {
             entradaSwicht(),
             entradasSlider(),
             entradaRadio(),
+            Text(
+              'El Checkbottom',
+              style: AppTheme.lightTheme.textTheme.headlineLarge,
+            ),
+            entradasCheck(),
                const ElevatedButton(
                 onPressed: null, 
                 child: Text('Guardar',
@@ -151,5 +159,46 @@ Column entradaRadio(){
     ]
   );
 }
+
+ Row entradasCheck(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text('Navegador',
+        style: AppTheme.lightTheme.textTheme.bodySmall,),
+        Transform.scale(
+          scale: 1.5,          child: Checkbox(
+            value: checkboxValue1,
+            onChanged: (value){
+              setState(() {
+                checkboxValue1 = value!;
+              });
+            }),
+        ),
+        Text('Emulador',
+        style: AppTheme.lightTheme.textTheme.bodySmall,),
+        Transform.scale(
+          scale: 1.5,          child: Checkbox(
+            value: checkboxValue2,
+            onChanged: (value){
+              setState(() {
+                checkboxValue2 = value!;
+              });
+            }),
+        ),
+        Text('Dispositivo fisico',
+        style: AppTheme.lightTheme.textTheme.bodySmall,),
+        Transform.scale(
+          scale: 1.5,          child: Checkbox(
+            value: checkboxValue3,
+            onChanged: (value){
+              setState(() {
+                checkboxValue3 = value!;
+              });
+            }),
+        ),
+      ],
+    );
+  }
 
 }
