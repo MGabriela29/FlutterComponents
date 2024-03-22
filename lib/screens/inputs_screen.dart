@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:practica3/models/data.dart';
+import 'package:practica3/screens/data_screen.dart';
 import 'package:practica3/screens/home_screen.dart';
 import 'package:practica3/screens/images_screen.dart';
 import 'package:practica3/screens/infinite_scroll_screen.dart';
@@ -14,9 +17,10 @@ class InputsScreen extends StatefulWidget {
 }
 //clase que define el estado de la ventana 
 class _InputsScreenState extends State<InputsScreen> {
+  String? nombre;
   bool switchValue = false; //controla el widget swicht //variable de clase
   double sliderValue = 0.0;
-  int radioSelected=0;
+  String? radioSelected;
   bool checkboxValue1 = false;
   bool checkboxValue2 = false;
   bool checkboxValue3 = false;
@@ -42,6 +46,8 @@ class _InputsScreenState extends State<InputsScreen> {
       ruta = MaterialPageRoute( // variable para la ruta
       builder: (context) => const ImagesScreen());    
       break;
+    case 4:SystemChannels.platform.invokeMethod('SystemNavigator.pop');
+
   }
   setState(() {
     indexNavigation = index; 
@@ -63,18 +69,29 @@ class _InputsScreenState extends State<InputsScreen> {
             Text('Entradas',
             style: AppTheme.lightTheme.textTheme.headlineLarge,
             ),
-            entradaNombre(),
+            entradaNombre(),//yo pienso que aqui va una variable que regrese y guarde 
             entradaSwicht(),
             entradasSlider(),
             entradaRadio(),
             Text(
-              'El Checkbottom',
+              '¿Que prefieres para correr tu app?',
               style: AppTheme.lightTheme.textTheme.headlineLarge,
             ),
             entradasCheck(),
-               const ElevatedButton(
-                onPressed: null, 
-                child: Text('Guardar',
+                ElevatedButton(
+                onPressed: () {
+                    Data data =Data(
+                      nomb: nombre!, 
+                      gust: switchValue, 
+                      calif: sliderValue.round(), 
+                      op: radioSelected!, 
+                      nav: checkboxValue1, 
+                      emu: checkboxValue2, 
+                      cel: checkboxValue3);
+                    Navigator.push( 
+                    context , MaterialPageRoute(builder: (context)=>  DataScreen(datos: data,)));
+                }, 
+                child: const  Text('Guardar',
                 //style: AppTheme.lightTheme.textTheme.bodyMedium,
                 )),
           ],
@@ -83,8 +100,8 @@ class _InputsScreenState extends State<InputsScreen> {
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: AppTheme.primaryColor,
         currentIndex: indexNavigation,
-          unselectedItemColor: Colors.amber,
-          selectedItemColor: Colors.blue,
+          unselectedItemColor: const Color.fromARGB(255, 7, 106, 255),
+          selectedItemColor: AppTheme.primaryColor,
           onTap: (index)=> openScreen(index, context),//para ver en que ventana estoy // openScreen metodo es para las rutas
         items: const [
           BottomNavigationBarItem(
@@ -95,12 +112,16 @@ class _InputsScreenState extends State<InputsScreen> {
                 Icons.add_comment),
               label: 'Comentarios'),
                BottomNavigationBarItem(
-               icon: Icon(Icons.exit_to_app_outlined),
+               icon: Icon(Icons.notification_add),
                label: "notificaciones",
               ),
               BottomNavigationBarItem(
-               icon: Icon(Icons.exit_to_app_outlined),
+               icon: Icon(Icons.image),
                label: "images",
+              ),
+              BottomNavigationBarItem(
+               icon: Icon(Icons.exit_to_app_outlined),
+               label: "Salir",
               ),
         ]
          ),
@@ -114,6 +135,7 @@ class _InputsScreenState extends State<InputsScreen> {
             labelText: 'Escribe tu nombre:',
             labelStyle: AppTheme.lightTheme.textTheme.headlineLarge,
           ),
+          onChanged: (text) => nombre = text ,
         );
   }
 
@@ -155,7 +177,7 @@ Column entradasSlider(){
         onChanged: (value){
           setState(() {
             sliderValue= value;
-            print('se cambio el slider: $sliderValue');
+            //print('se cambio el slider: $sliderValue');
           });
         }),
     ],
@@ -173,12 +195,12 @@ Column entradaRadio(){
         leading: Transform.scale(
           scale: 1.5,
           child: Radio(
-            value: 1,//id de la opcion seleccionada 
+            value: 'Kotlin',//id de la opcion seleccionada sea numero o el contenido en este caso el contendio ya que se manda 
             groupValue: radioSelected,
             onChanged: (value){
               setState(() {
                 radioSelected= value!;
-                print('Seleccion del botón radio: $radioSelected');
+                //print('Seleccion del botón radio: $radioSelected');
               });
             },
           ),
@@ -190,12 +212,12 @@ Column entradaRadio(){
         leading: Transform.scale(
           scale: 1.5,
           child: Radio(
-            value: 2,//id de la opcion seleccionada 
+            value: 'Java',//id de la opcion seleccionada 
             groupValue: radioSelected,
             onChanged: (value){
               setState(() {
                 radioSelected= value!;
-                print('Seleccion del botón radio: $radioSelected');
+                //print('Seleccion del botón radio: $radioSelected');
               });
             },
           ),
@@ -245,5 +267,4 @@ Column entradaRadio(){
       ],
     );
   }
-
 }

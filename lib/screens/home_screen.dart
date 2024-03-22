@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:practica3/models/data.dart';
+import 'package:practica3/screens/data_screen.dart';
 import 'package:practica3/screens/images_screen.dart';
 import 'package:practica3/screens/inputs_screen.dart';
 import 'package:practica3/theme/app_theme.dart';
@@ -73,7 +75,7 @@ class HomeScreen extends StatelessWidget {
               Navigator.push(context, ruta3);
             },
           ),
-           const Divider(),
+          const Divider(),
           ListTile(
             title: Text('Imagenes',
             style: AppTheme.lightTheme.textTheme.headlineLarge,),
